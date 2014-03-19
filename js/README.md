@@ -1,7 +1,6 @@
 # JavaScript code standard
 Work in progress
 * TODO:
-    * update loop part,
     * update lazy load
 
 ## Naming convention:
@@ -184,30 +183,71 @@ No language is perfect, there are something you should avoid ...
         > for example, you want to change color of certain `<li>` elements,
         > instead of assign new class names for each `<li>` element,
         > assign a new class name for their parent `<ul>` or `<ol>` element,
+        > 
         > ```css
         > .navigation-bar .button { color: #000; }
         > .navigation-bar-alternative .button { color: #fff; }
         > ```
-
+        >
         > another example, if you want to show / hide certain elements,
         > try `display: none`, or `visibility: hidden`,
         > instead of insert / remove DOM nodes from the context.
 
 2. Loops
 
-    try `jQuery.each()` or `Dojo.array.forEach()` to loop through arrays,
+    try encapsulated functions like `jQuery.each()` or `Dojo.array.forEach()` to loop through arrays,
     not native ECMAScript 5 forEach which has terrible performance at this moment.
     
     > Also you may want to encapsulate `for` when you are coding without framework,
     > the reason behind this is one terrible thing about JavaScript, no block context,
+    > 
     > ```javascript
     > var index = 0, item;
     > for (index; item = array[index]; index++) { fn(item); ... }
     > ```
+    >
     > `index` and `item` here is going to pollute the function context this `for` loop is in,
     > encapsulated functions solves this problem by introducing a lambda function to contain these variables.
+    > 
     > ```javascript
     > jQuery.each(theArray, function (index, value) { ... });
+    > ```
+    
+    One way to build your own function to loop through both array & object if you are not using any framework.
+    
+    > ```javascript
+    >  // "return false" to break the loop
+    >  function each(obj, callback, scope) {
+    >
+    >    function isArraylike(obj) {
+    >      return Object.prototype.toString.call(obj) === '[object Array]';
+    >    }
+    >
+    >    var
+    >    value,
+    >    i,
+    >    length = obj.length,
+    >    isArray = isArraylike(obj);
+    >
+    >    if (isArray) {
+    >      for (i = 0; i < length; i++) {
+    >        value = callback.call(scope || obj[i], obj[i], i);
+    >        if (value === false) {
+    >          break;
+    >        }
+    >      }
+    >    } else {
+    >      for (i in obj) {
+    >        if (obj.hasOwnProperty(i)) {
+    >          callback.call(scope || obj[i], obj[i], i);
+    >          if (value === false) {
+    >            break;
+    >          }
+    >        }
+    >      }
+    >    }
+    >
+    >  }
     > ```
     
 3. Go test it!
