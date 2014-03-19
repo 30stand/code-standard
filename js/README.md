@@ -1,5 +1,8 @@
 # JavaScript code standard
 Work in progress
+* TODO:
+    * update loop part,
+    * update lazy load
 
 ## Naming convention:
 
