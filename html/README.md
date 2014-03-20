@@ -25,9 +25,9 @@ The HTML guideline decrees our approach to front-end development, HTML and HTML5
 
 General Meta tags:
 
-  	<meta charset="utf-8" >
+    <meta charset="utf-8" >
     <meta http-equiv="x-ua-compatible" content="IE=edge">
-  	<meta http-equiv="cleartype" content="on">
+    <meta http-equiv="cleartype" content="on">
 
 For robots: Tell robots to how index the content, and/or follow links
 
@@ -89,7 +89,9 @@ Inline elements are normally displayed without starting a new line.
 #### Sample code block:
 
 	<section class="body-copy"> 
-		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.<a class="internal-link">Link</a> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        <a class="internal-link" href="#">sed do eiusmod</a>,
+        sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</section>
 
 
@@ -165,7 +167,6 @@ Place comments on a new line above the container block element. Use single line 
 8. Use `<fieldset>` and “legend" to ground fields together.
 9. Use `<section>` to either group different articles into different purposes or subjects, or to define the different sections of a single article.
 10. The `<aside>` element represents a section of a page that consists of content that is tangentially related to the content around the aside element, and which could be considered separate from that content. Such sections are often represented as sidebars in printed typography.
-
 
 
 
