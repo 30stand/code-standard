@@ -10,6 +10,7 @@ The HTML guideline decrees our approach to front-end development, HTML and HTML5
     ```
     <button type="button" class="print-button" data-index="1">Print</button>
     ```
+
 1. Use HTML tags instead of XHTML / XML
 
     for example, `<br>` instead of `<br />`, there is no necessity to close tags since it's only a XML standard.
@@ -19,51 +20,40 @@ The HTML guideline decrees our approach to front-end development, HTML and HTML5
     ```
     <!DOCTYPE html>
     ```
-1. First couple lines in the HEAD
-    
-    ```
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="IE=edge">
-    ```
-
-    the first line avoids garbled words caused by wrong encoding detection of browsers,
-    the second line prevents MSIE works in legacy standard or quirks mode by default.
-
 
 ## VIEWPORT Meta tag usage
 
 General Meta tags:
 
-    <meta charset="utf-8" >
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-	<meta name="format-detection" content="telephone=no">
-   	<meta http-equiv="cleartype" content="on">
-   	
+	<meta charset="utf-8" >
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta http-equiv="cleartype" content="on">
+
 For robots: Tell robots to how index the content, and/or follow links
 
     <meta name="title" content="">
 	<meta name="description" content="">
-	<meta name="google" content="notranslate">
-	<meta name="robots" content="noindex, nofollow">
+	<meta name="google" content="">
+	<meta name="robots" content="">
 	<meta name="google-site-verification" content="">
 
 For company:
 
 	<meta name="author" content="HSBC">
-	<meta name="Copyright" content="Copyright . All Rights Reserved.">
+	<meta name="copyright" content="Copyright 2014. All Rights Reserved.">
 
 For the responsive website or to support Mobile browser: 
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="target-densitydpi=device-dpi" >
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="format-detection" content="telephone=no">
 	
-Note: not “/” for meta tags
-Note: <meta> tags always goes inside the <head> element.
-Note: Metadata is always passed as name/value pairs.
+
+Note: `<meta>` tags always goes inside the `<head>` element.  
+Note: Metadata is always passed as name/value pairs.  
 Note: The content attribute MUST be defined if the name or the http-equiv attribute is defined. If none of these are defined, the content attribute CANNOT be defined.
 
 
@@ -77,7 +67,7 @@ Block level elements normally start (and end) with a new line when displayed in 
     <table>Table</table>, <header>Header</header>,
     <nav>Navigation</nav>
 
-    <div> is also block element that used as container.
+`<div>` is also block element that used as container.
 
 #### Sample code block:
 
@@ -94,14 +84,13 @@ Inline elements are normally displayed without starting a new line.
 
     <b>, <td>, <a>, <img>, <em>, <i>, <cite>, <mark>, <code>
 
-    <span> tags also inline tags that used as text container 
+`<span>` tags also inline tags that used as text container 
 
 #### Sample code block:
 
     <section class=”body-copy”> 
-    	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <a class=”internal-link”>Link <I class=”icon pdf”></a> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+    	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <a class=”internal-link”>Link</a> 		Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 			galley of type and scrambled it to make a type specimen book.</p>
     </section>
-
 
 
 ## Proper indentation
@@ -131,7 +120,7 @@ Place comments on a new line above the container block element. Use single line 
     <!- - Start header content area - ->
     <header class=”header”>
     	<a href=”#” class=”hsbc-logo” title=”HSBC”>
-    		<img  alt="HSBC " src="../images /HSBC-logo.png">
+    		<img alt="HSBC" src="../images /HSBC-logo.png">
     	</a>
     	<nav class=”utility-nav”><nav>
     	<nav class=”main-nav”></nav>
@@ -176,7 +165,6 @@ Place comments on a new line above the container block element. Use single line 
 8. Use `<fieldset>` and “legend” to ground fields together.
 9. Use `<section>` to either group different articles into different purposes or subjects, or to define the different sections of a single article.
 10. The `<aside>` element represents a section of a page that consists of content that is tangentially related to the content around the aside element, and which could be considered separate from that content. Such sections are often represented as sidebars in printed typography.
-
 
 
 
