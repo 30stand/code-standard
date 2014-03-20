@@ -97,29 +97,13 @@ Inline elements are normally displayed without starting a new line.
 
 ## Proper indentation
 
-For the indentation use single tab for each new line
-
-    <div class="container">
-      <header class="header">
-        <a href="#" class="hsbc-logo" title="HSBC">
-          <img  alt="HSBC " src="../images /HSBC-logo.png">
-        </a>
-        <nav class="utility-nav"><nav>
-        <nav class="main-nav"></nav>
-      </header>
-      <section class="content">
-        <section class="body-copy"></section>
-        <aside class="related-content"></aside>
-      </section>
-      <footer class="footer"></footer>
-    </div>
-    
+For the indentation use 4 spaces
 
 ## Code commenting
 
 Place comments on a new line above the container block element. Use single line short sentence as comment and place comments only for module and main block elements.
 
-    <!- - Start header content area - ->
+    <!-- Start header content area -->
     <header class="header">
       <a href="#" class="hsbc-logo" title="HSBC">
         <img alt="HSBC" src="../images /HSBC-logo.png">
@@ -127,7 +111,7 @@ Place comments on a new line above the container block element. Use single line 
       <nav class="utility-nav"><nav>
       <nav class="main-nav"></nav>
     </header>
-    <!- - End header content area - ->
+    <!-- End header content area -->
 
 
 ## Use proper tags
