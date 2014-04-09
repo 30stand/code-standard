@@ -157,6 +157,28 @@ Sample code:
 <input type="checkbox" id="markuplang" name="computerskills" checked="checked">
 <label for="markuplang">HTML</label>
 ```
+
+3. Group the logically related input or select element within fieldset elements and each fieldset should has a legend element that describes the group. Sample code:
+```
+<form action="http://example.com/adduser" method="post">
+   <fieldset>
+     <legend>Residential Address</legend>
+     <label for="raddress">Address: </label>
+     <input type="text" id="raddress" name="raddress" />
+     <label for="rzip">Postal/Zip Code: </label>
+     <input type="text" id="rzip" name="rzip" />
+     ...more residential address information...
+   </fieldset>
+   <fieldset>
+     <legend>Postal Address</legend>
+     <label for="paddress">Address: </label>
+     <input type="text" id="paddress" name="paddress" />
+     <label for="pzip">Postal/Zip Code: </label>
+     <input type="text" id="pzip" name="pzip" />
+     ...more postal address information...
+   </fieldset>
+</form>
+```
 ### Structural elements
 
 1. `<ul>, <ol>`List markup is used whenever items are in a visual list.
