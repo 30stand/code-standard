@@ -146,14 +146,17 @@ Place comments on a new line above the container block element. Use single line 
 ### Form control
 1. A label is attached to a specific form control through the use of the for attribute. The value of the for attribute must be the same as the value of the id attribute of the form control.
 Sample code:
+```
 <label for="firstname">First name:</label> 
 <input type="text" name="firstname" id="firstname" />
+```
 
 2. The label is positioned after input elements of type="checkbox" and type="radio"
 Sample code:
+```
 <input type="checkbox" id="markuplang" name="computerskills" checked="checked">
 <label for="markuplang">HTML</label>
-
+```
 ### Structural elements
 
 1. `<ul>, <ol>`List markup is used whenever items are in a visual list.
