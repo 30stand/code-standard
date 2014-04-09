@@ -1,43 +1,59 @@
 # JavaScript code standard
-Work in progress
-* TODO:
-    * update lazy load
+
+TODO:
+
+1.  add lazy load
+
+1.  add feature detection
+
 
 ## Naming convention:
 
-Constructors: ```CapitalCase```
+1.  Constructors: ```CapitalCase```
 
-Constants: ```UPPER_CASE_WITH_UNDERSCORE```
+1.  Constants: ```UPPER_CASE_WITH_UNDERSCORE```
 
-Everything else: ```camelCase```
+1.  Everything else: ```camelCase```
+
 
 ## Style
 
-1. Indentation: 4 spaces
+1. Indentation:
 
-2. Comments: at least one line of short description is required, more lines or even comments following [JSDoc](http://usejsdoc.org/) rules will be appreciated.
+    4 spaces
 
-    > Your code should be elegant, self-explanatory, not heavily relied on comments.
+1. Comments:  
 
-2. Curly brackets:
-Required after statements such as ... ```if, switch, try, catch``` ... etc.
+    At least one line of short description is required for functions and methods, more lines or even comments following [JSDoc](http://usejsdoc.org/) rules will be appreciated.
 
-    > For ```{```, place it at the end of the previous line,
-    > NOT the begining of the next line,
-    > to avoid wrong semicolon insertion causes misinterpretation of the program.
+    In the meanwhile, your code should be elegant, self-explanatory, not heavily relied on comments.
 
-3. Simecolons:Required.
+1. Curly brackets:  
 
-4. Var: required, declare all variables at the top of each function.
-> Always remember that JavaScript does NOT have block scope, only functions have scope.
+    Required after statements such as ... ```if, switch, try, catch``` ... etc.
+
+    For ```{```, place it at the end of the previous line, NOT the begining of the next line, to avoid wrong semicolon insertion causes misinterpretation of the program.
+
+1. Simecolons:
+
+    Required.
+
+1. `var`:
+
+    Required, declare all variables at the top of each function.
+
+    Always remember that JavaScript does NOT have block scope, only functions have scope.
+
 
 ## Do NOT use ...
 
 No language is perfect, there are something you should avoid ...
 
-1. ```eval()```
-2. ```with```
-3. ```==```: too many unexpected results, use```===```instead.
+1. ```eval( ... )```:
+
+    Improper use of eval makes your webpage an easy target for XSS attack.
+
+1. ```==```: too many unexpected results, use```===```instead.
 
     ```javascript
     '' == '0' // false
@@ -51,7 +67,7 @@ No language is perfect, there are something you should avoid ...
     ' \t\r\n ' == 0 // true
     ```
 
-4. Constructors without protection, which when called without "new", will contaminate other context wherever "this" points to (like "window").
+1. Constructors without protection, which when called without "new", will contaminate other context wherever "this" points to (like "window").
 
     ```javascript
     function Person(name) {
@@ -64,7 +80,7 @@ No language is perfect, there are something you should avoid ...
     }
     ```
 
-5. Reserved words, a common error like this ...
+1. Reserved words, a common error like this ...
 
     ```javascript
     { class: 'my-class-name' }
@@ -73,9 +89,7 @@ No language is perfect, there are something you should avoid ...
     "class" is a reserved word, the browsers with ECMAScript 3 standard will throw an error, but not the ones with ECMAScript 5 standard.
     
 
-## Object-oriented (Thanks to Douglas Crockford)
-
-> Every object is linked to a prototype object from which it inherits properties.
+## Inheritance
 
 1. Pseudoclassical
 
@@ -98,7 +112,7 @@ No language is perfect, there are something you should avoid ...
     Cat.prototype = new Mammal( );
     ```
 
-2. Object Specifiers
+1. Object Specifiers
 
     This pattern is identical to pseudoclassical,
     except replace the auguments of constructors with a single object,
@@ -110,7 +124,7 @@ No language is perfect, there are something you should avoid ...
     };
     ```
 
-3. Prototypal
+1. Prototypal
 
     Instead of the prototype chain between constructors,
     we build upon an existing object, then customize it.
@@ -133,12 +147,11 @@ No language is perfect, there are something you should avoid ...
     myCat.name = 'Henrietta';
     ```
 
-4. Functional
+1. Functional
 
-    > The functional pattern has a great deal of flexibility. 
-    > It requires less effort than the pseudoclassical pattern,
-    > and gives us better encapsulation and information hiding and access to super methods.
-
+    The functional pattern has a great deal of flexibility. 
+    It requires less effort than the pseudoclassical pattern,
+    and gives us better encapsulation and information hiding and access to super methods.
 
     ```javascript
     var mammal = function (privateObj, parentObj) {
@@ -160,7 +173,7 @@ No language is perfect, there are something you should avoid ...
     var myMammal = mammal({name: 'Herb'});
     ```
 
-5. Parts
+1. Parts
 
     Make objects out of parts.
     
@@ -178,78 +191,75 @@ No language is perfect, there are something you should avoid ...
 1. DOM manipulation
 
     1. use `className` to apply styles instead of inline style rules;
-    2. manipulate less nodes the better;
+    1. manipulate less nodes the better;
         
-        > for example, you want to change color of certain `<li>` elements,
-        > instead of assign new class names for each `<li>` element,
-        > assign a new class name for their parent `<ul>` or `<ol>` element,
-        > 
-        > ```css
-        > .navigation-bar .button { color: #000; }
-        > .navigation-bar-alternative .button { color: #fff; }
-        > ```
-        >
-        > another example, if you want to show / hide certain elements,
-        > try `display: none`, or `visibility: hidden`,
-        > instead of insert / remove DOM nodes from the context.
+        for example, you want to change color of certain `<li>` elements,
+        instead of assign new class names for each `<li>` element,
+        assign a new class name for their parent `<ul>` or `<ol>` element,
+        
+        ```css
+        .navigation-bar .button { color: #000; }
+        .navigation-bar-alternative .button { color: #fff; }
+        ```
 
-2. Loops
+        another example, if you want to show / hide certain elements,
+        try `display: none`, or `visibility: hidden`,
+        instead of insert / remove DOM nodes from the context.
 
-    try encapsulated functions like `jQuery.each()` or `Dojo.array.forEach()` to loop through arrays,
-    not native ECMAScript 5 forEach which has terrible performance at this moment.
+1. Loops
+
+    try encapsulated functions like `jQuery.each()` or `Dojo.array.forEach()` to loop through arrays, not native ECMAScript 5 forEach which has terrible performance at this moment, also have compatibility issues in old browsers.
     
-    > Also you may want to encapsulate `for` when you are coding without framework,
-    > the reason behind this is one terrible thing about JavaScript, no block context,
-    > 
-    > ```javascript
-    > var index = 0, item;
-    > for (index; item = array[index]; index++) { fn(item); ... }
-    > ```
-    >
-    > `index` and `item` here is going to pollute the function context this `for` loop is in,
-    > encapsulated functions solves this problem by introducing a lambda function to contain these variables.
-    > 
-    > ```javascript
-    > jQuery.each(theArray, function (index, value) { ... });
-    > ```
+    Also you may want to encapsulate `for` when you are coding without framework, one good reason is to avoid contaminating function variables.
+    
+    ```javascript
+    var index = 0, item;
+    for (index; item = array[index]; index++) { fn(item); ... }
+    ```
+
+    `index` and `item` here is going to pollute the function context this `for` loop is in,
+
+    encapsulated functions solves this problem by introducing a lambda function to contain these variables.
+    
+    ```javascript
+    jQuery.each(theArray, function (index, value) { ... });
+    ```
     
     One way to build your own function to loop through both array & object if you are not using any framework.
     
-    > ```javascript
-    >  // "return false" to break the loop
-    >  function each(obj, callback, scope) {
-    >
-    >    function isArraylike(obj) {
-    >      return Object.prototype.toString.call(obj) === '[object Array]';
-    >    }
-    >
-    >    var
-    >    value,
-    >    i,
-    >    length = obj.length,
-    >    isArray = isArraylike(obj);
-    >
-    >    if (isArray) {
-    >      for (i = 0; i < length; i++) {
-    >        value = callback.call(scope || obj[i], obj[i], i);
-    >        if (value === false) {
-    >          break;
-    >        }
-    >      }
-    >    } else {
-    >      for (i in obj) {
-    >        if (obj.hasOwnProperty(i)) {
-    >          callback.call(scope || obj[i], obj[i], i);
-    >          if (value === false) {
-    >            break;
-    >          }
-    >        }
-    >      }
-    >    }
-    >
-    >  }
-    > ```
-    
-3. Go test it!
+    ```javascript
+    // "return false" to break the loop
+    function each(obj, callback, scope) {
+        function isArraylike(obj) {
+            return Object.prototype.toString.call(obj) === '[object Array]';
+        }
 
-    When in doubt, [go test it!](http://jsperf.com/)
+        var
+        value,
+        i,
+        length = obj.length,
+        isArray = isArraylike(obj);
+
+        if (isArray) {
+            for (i = 0; i < length; i++) {
+                value = callback.call(scope || obj[i], obj[i], i);
+                if (value === false) {
+                    break;
+                }
+            }
+        } else {
+            for (i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    callback.call(scope || obj[i], obj[i], i);
+                    if (value === false) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    ```
+    
+1. Go test it!
+
+    When in doubt, try to create a test case here: [jsperf](http://jsperf.com/)
