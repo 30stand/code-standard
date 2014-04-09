@@ -144,14 +144,14 @@ Place comments on a new line above the container block element. Use single line 
 3. For non-decorative images, eg charts, diagram, alt text should be descriptive.
 
 ### Form control
-1. A label is attached to a specific form control through the use of the for attribute. The value of the for attribute must be the same as the value of the id attribute of the form control.
+1. For all input elements of type text, file or password, for all textareas and for all select elements in the Web page, a label element is attached before the input, textarea, or select element. The for attribute of the label element matches the id of the input, textarea, or select element.
 Sample code:
 ```
 <label for="firstname">First name:</label> 
 <input type="text" name="firstname" id="firstname" />
 ```
 
-2. The label is positioned after input elements of type="checkbox" and type="radio"
+2. For all input elements of type checkbox or radio in the Web page, the label is positioned after the input element. The for attribute of the label element matches the id of the input element.
 Sample code:
 ```
 <input type="checkbox" id="markuplang" name="computerskills" checked="checked">
