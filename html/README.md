@@ -139,8 +139,8 @@ Place comments on a new line above the container block element. Use single line 
 2. able have `<summary>` and/or `<caption>` elements where appropriate
 
 ### Image
-1. Always include alt attribute in <img>.
-2. For decorative images, implement it via CSS, or implement it using <img> with alt="".
+1. Always include alt attribute in '<img>'.
+2. For decorative images, implement it via CSS, or implement it using '<img>' with alt="".
 3. For non-decorative images, eg charts, diagram, alt text should be descriptive.
 
 ### Structural elements
