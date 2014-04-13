@@ -2,6 +2,10 @@
 
 Work in progress
 
+Todo:
+
+1. add references
+
 ## Naming convention:
 
 1.  Constructors: ```CapitalCase```
