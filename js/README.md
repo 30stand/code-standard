@@ -1,11 +1,6 @@
 # JavaScript code standard
 
-TODO:
-
-1.  add lazy load
-
-1.  add feature detection
-
+Work in progress
 
 ## Naming convention:
 
@@ -18,42 +13,55 @@ TODO:
 
 ## Style
 
-1. Indentation:
+1. Indentation
 
     4 spaces
 
-1. Comments:
-
-    At least one line of short description is required for functions and methods, more lines or even comments following [JSDoc](http://usejsdoc.org/) rules will be appreciated.
-
-    In the meanwhile, your code should be elegant, self-explanatory, not heavily relied on comments.
-
-1. Curly brackets:
+1. Curly brackets
 
     Required after statements such as ... ```if, switch, try, catch``` ... etc.
 
     For ```{```, place it at the end of the previous line, NOT the begining of the next line, to avoid wrong semicolon insertion causes misinterpretation of the program.
 
-1. Simecolons:
+1. Semicolons
 
     Required.
 
-1. `var`:
+1. `var`
 
     Required, declare all variables at the top of each function.
 
     Always remember that JavaScript does NOT have block scope, only functions have scope.
 
+## Comments
 
-## Do NOT use ...
+At least one line of short description is required for functions and methods.
+
+Comments following [JSDoc](http://usejsdoc.org/) rules will be appreciated.
+
+    /**
+     * Represents a book.
+     * @constructor
+     * @param {string} title - The title of the book.
+     * @param {string} author - The author of the book.
+     */
+    function Book(title, author) {
+    }
+
+In the meanwhile, your code should be elegant, self-explanatory, not heavily relied on comments.
+
+
+## Awful parts to avoid
 
 No language is perfect, there are something you should avoid ...
 
-1. ```eval( ... )```:
+1. `eval()`
 
     Improper use of eval makes your webpage an easy target for XSS attack.
 
-1. ```==```: too many unexpected results, use```===```instead.
+1. `==`
+
+    Leads to too many unexpected results, use```===```instead.
 
     ```javascript
     '' == '0' // false
@@ -67,20 +75,9 @@ No language is perfect, there are something you should avoid ...
     ' \t\r\n ' == 0 // true
     ```
 
-1. Constructors without protection, which when called without "new", will contaminate other context wherever "this" points to (like "window").
+1. Reserved words
 
-    ```javascript
-    function Person(name) {
-        // return a new instance when
-        // "this" is not pointed to the right place
-        if(!(this instanceof Person)) {
-            return new Person();
-        }
-        this.name = name;
-    }
-    ```
-
-1. Reserved words, a common error like this ...
+    A common error like this,
 
     ```javascript
     { class: 'my-class-name' }
@@ -264,3 +261,37 @@ No language is perfect, there are something you should avoid ...
 1. Go test it!
 
     When in doubt, try to create a test case here: [jsperf](http://jsperf.com/)
+
+
+## Best practices
+
+### Constructors
+
+Constructors without protection, which when called without `new`, it will contaminate outer context wherever "this" points to (most likely to be "window").
+
+    function Person(name) {
+        // return a new instance when
+        // "this" is not pointed to the right place
+        if(!(this instanceof Person)) {
+            return new Person();
+        }
+        this.name = name;
+    }
+
+### Lazy load
+
+A very useful technique for feature detections, the following sample code detects `window.addEventListener`, if not, then fall back to `window.attachEvent`.
+
+    var addHandler = (function () {
+
+        if (typeof addEventListener !== 'undefined') {
+            return function (el, type, handler) {
+                el.addEventListener(type, handler, false);
+            };
+        } else if (typeof attachEvent !== 'undefined') {
+            return function (el, type, handler) {
+                el.attachEvent('on' + type, handler);
+            };
+        }
+
+    }());
