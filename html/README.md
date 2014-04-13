@@ -1,117 +1,134 @@
 # HTML code standard
+
 Work in progress
 
-## Overview
-The HTML guideline decrees our approach to front-end development, HTML and HTML5 tags usage at Digital publishing delivery team in HSBC Global publishing services.
 
-## General HTML standard:
-1. Tag and attribute names should be lowercase, prefix your customized properties with "data-"
-    
+## Style
+
+1. Indentation
+
+    4 spaces
+
+1. Comments
+
+    Place comments on a new line above the container block element. Use single line short sentence as comment and place comments only for module and main block elements.
+
     ```
-    <button type="button" class="print-button" data-index="1">Print</button>
+    <!-- Start header content area -->
+    <div class="header">
+      <a href="/" class="hsbc-logo">
+        <img alt="HSBC" src="/images/hsbc-logo.png">
+      </a>
+    </div>
+    <!-- End header content area -->
     ```
 
-1. Use HTML tags instead of XHTML / XML
+1. Close tags are more preferred
 
-    for example, `<br>` instead of `<br />`, there is no necessity to close tags since it's only a XML standard.
+    `<br />` instead of `<br>`, for better visual consistency.
+
+
+## Enforce HTML standard
 
 1. Doctype declaration, always use
-    
+
     ```
     <!DOCTYPE html>
     ```
 
-## VIEWPORT Meta tag usage
+    Unless the page is IE-only, or only works under quirks mode.
 
-General Meta tags:
+1. Tag and attribute names should be lowercase, prefix custom non-visible data with `data-*` attributes
 
-    <meta charset="utf-8" >
-    <meta http-equiv="x-ua-compatible" content="IE=edge">
-    <meta http-equiv="cleartype" content="on">
-
-For robots: Tell robots to how index the content, and/or follow links
-
-	<meta name="title" content="">
-	<meta name="description" content="">
-	<meta name="google" content="">
-	<meta name="robots" content="">
-	<meta name="google-site-verification" content="">
-
-For company:
-
-	<meta name="author" content="HSBC">
-	<meta name="copyright" content="Copyright 2014. All Rights Reserved.">
-
-For the responsive website or to support Mobile browser: 
-
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="format-detection" content="telephone=no">
-  
-
-Note: `<meta>` tags always goes inside the `<head>` element.  
-Note: Metadata is always passed as name/value pairs.  
-Note: The content attribute MUST be defined if the name or the http-equiv attribute is defined. If none of these are defined, the content attribute CANNOT be defined.
+    ```
+    <button type="button" class="print-button" data-index="1">Print</button>
+    ```
 
 
-## Block and inline element placing
+## Meta tags
 
-### Block elements
+1. General Meta tags
 
-Block level elements normally start (and end) with a new line when displayed in a browser.
+    ```
+    <!-- always put charset as the first line in head -->
+    <meta charset="utf-8" />
+    <!-- tell IE to work on latest rendering mode -->
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    ```
 
-	<h1>One</h1>, <P>Paragraph</p>, <ul>unordered list</ul>, 
-	<table>Table</table>, <header>Header</header>,
-	<nav>Navigation</nav>
+1. Search engines
 
-`<div>` is also block element that used as container.
+    ```
+    <title></title>
+    <meta name="robots" content="" />
+    <meta name="description" content="" />
+    <meta name="google-site-verification" content="" />
+    ```
 
-#### Sample code block:
+1. Optional tags for additional information
 
-	<div class="container">
-	  <header class="header"></header>
-	  <section class="body-copy"></section>
-	  <footer class="footer"></footer>
-	</div>
+    ```
+    <meta name="author" content="">
+    <meta name="copyright" content="">
+    ```
+
+1. De facto tags for mobile devices
+
+    ```
+    <!-- general -->
+    <meta name="viewport" content="width=device-width">
+
+    <!-- for iOS devices or Android -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    ```
+
+    Optional tags for legacy devices:
+
+    ```
+    <!-- Windows Mobile -->
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Blackberry -->
+    <meta name="HandheldFriendly" content="true" />
+    ```
+
+Notes:
+
+1. `<meta>` tags always goes inside the `<head>` element.
+
+1. Meta data is always passed as name value pairs.
+
+1. The content attribute MUST be defined if `name` or `http-equiv` attribute is defined. If none of these are defined, the content attribute CANNOT be defined.
+
+
+## Block-level elements and inline elements
+
+Never place a block-level element inside an inline element.
+
+
+### Block-level elements
+
+By default, block-level elements begin on new lines.
+
+Generally, block-level elements may contain inline elements and other block-level elements. Inherent in this structural distinction is the idea that block elements create "larger" structures than inline elements.
+
+    <address>, <blockquote>, <dd>, <div>, <dl>, <fieldset>, <form>, <h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <hr>, <noscript>, <ol>, <p>, <pre>, <table>, <tfoot>, <ul>
+
+New block-level elements introduced in HTML5:
+
+    <article>, <aside>, <audio>, <canvas>, <figcaption>, <figure>, <footer>, <header>, <hgroup>, <output>, <section>, <video>
 
 
 ### Inline elements
 
-Inline elements are normally displayed without starting a new line. 
+By default, inline elements do not begin with new line.
 
-	<b>, <td>, <a>, <img>, <em>, <i>, <cite>, <mark>, <code>
+Generally, inline elements may contain only data and other inline elements.
 
-`<span>` tags also inline tags that used as text container 
-
-#### Sample code block:
-
-	<section class="body-copy"> 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        <a class="internal-link" href="#">sed do eiusmod</a>,
-        sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</section>
-
-
-## Proper indentation
-
-For the indentation use 4 spaces
-
-## Code commenting
-
-Place comments on a new line above the container block element. Use single line short sentence as comment and place comments only for module and main block elements.
-
-    <!-- Start header content area -->
-    <header class="header">
-      <a href="#" class="hsbc-logo" title="HSBC">
-        <img alt="HSBC" src="../images /HSBC-logo.png">
-      </a>
-      <nav class="utility-nav"><nav>
-      <nav class="main-nav"></nav>
-    </header>
-    <!-- End header content area -->
+    <b>, <big>, <i>, <small>, <tt>, <abbr>, <acronym>, <cite>, <code>, <dfn>, <em>, <kbd>, <strong>, <samp>, <var>, <a>, <bdo>, <br>, <img>, <map>, <object>, <q>, <script>, <span>, <sub>, <sup>, <button>, <input>, <label>, <select>, <textarea>
 
 
 ## Use proper tags
@@ -153,4 +170,16 @@ Place comments on a new line above the container block element. Use single line 
 10. The `<aside>` element represents a section of a page that consists of content that is tangentially related to the content around the aside element, and which could be considered separate from that content. Such sections are often represented as sidebars in printed typography.
 
 
+## References
 
+1. [HTML Living Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html#contents)
+1. [MetaExtensions](http://wiki.whatwg.org/wiki/MetaExtensions)
+1. [Meta tags that Google understands](https://support.google.com/webmasters/answer/79812?hl=en)
+1. [META XHTML Element](http://msdn.microsoft.com/en-us/library/bb159711.aspx)
+1. [Specifying legacy document modes](http://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx)
+1. [Layout Meta Tag](http://msdn.microsoft.com/en-us/library/bb431690.aspx)
+1. [HTML element: <meta>](http://docs.blackberry.com/en/developers/deliverables/6176/HTML_ref_meta_564143_11.jsp)
+1. [Supported Meta Tags](https://developer.apple.com/library/safari/documentation/appleapplications/reference/SafariHTMLRef/Articles/MetaTags.html)
+1. [Using the viewport meta tag to control layout on mobile browsers](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag)
+1. [Block-level elements](https://developer.mozilla.org/en-US/docs/HTML/Block-level_elements)
+1. [Inline elements](https://developer.mozilla.org/en-US/docs/HTML/Inline_elements)
