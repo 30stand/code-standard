@@ -22,13 +22,13 @@ TODO:
 
     4 spaces
 
-1. Comments:  
+1. Comments:
 
     At least one line of short description is required for functions and methods, more lines or even comments following [JSDoc](http://usejsdoc.org/) rules will be appreciated.
 
     In the meanwhile, your code should be elegant, self-explanatory, not heavily relied on comments.
 
-1. Curly brackets:  
+1. Curly brackets:
 
     Required after statements such as ... ```if, switch, try, catch``` ... etc.
 
@@ -87,7 +87,7 @@ No language is perfect, there are something you should avoid ...
     ```
 
     "class" is a reserved word, the browsers with ECMAScript 3 standard will throw an error, but not the ones with ECMAScript 5 standard.
-    
+
 
 ## Inheritance
 
@@ -117,7 +117,7 @@ No language is perfect, there are something you should avoid ...
     This pattern is identical to pseudoclassical,
     except replace the auguments of constructors with a single object,
     this pattern can take the additional advantage when working with JSON.
-    
+
     ```javascript
     var Mammal = function (obj) {
         this.name = obj.name;
@@ -128,7 +128,7 @@ No language is perfect, there are something you should avoid ...
 
     Instead of the prototype chain between constructors,
     we build upon an existing object, then customize it.
-    
+
     ```javascript
     var myMammal = {
         name : 'Herb the Mammal',
@@ -149,7 +149,7 @@ No language is perfect, there are something you should avoid ...
 
 1. Functional
 
-    The functional pattern has a great deal of flexibility. 
+    The functional pattern has a great deal of flexibility.
     It requires less effort than the pseudoclassical pattern,
     and gives us better encapsulation and information hiding and access to super methods.
 
@@ -176,7 +176,7 @@ No language is perfect, there are something you should avoid ...
 1. Parts
 
     Make objects out of parts.
-    
+
     ```javascript
     var addParts = function (privateObj, obj) {
         obj.getName = function () { return privateObj.name };
@@ -190,13 +190,14 @@ No language is perfect, there are something you should avoid ...
 
 1. DOM manipulation
 
-    1. use `className` to apply styles instead of inline style rules;
-    1. manipulate less nodes the better;
-        
+    1. use `className` to apply styles instead of inline style rules.
+
+    1. manipulate less nodes the better.
+
         for example, you want to change color of certain `<li>` elements,
         instead of assign new class names for each `<li>` element,
         assign a new class name for their parent `<ul>` or `<ol>` element,
-        
+
         ```css
         .navigation-bar .button { color: #000; }
         .navigation-bar-alternative .button { color: #fff; }
@@ -209,9 +210,9 @@ No language is perfect, there are something you should avoid ...
 1. Loops
 
     try encapsulated functions like `jQuery.each()` or `Dojo.array.forEach()` to loop through arrays, not native ECMAScript 5 forEach which has terrible performance at this moment, also have compatibility issues in old browsers.
-    
+
     Also you may want to encapsulate `for` when you are coding without framework, one good reason is to avoid contaminating function variables.
-    
+
     ```javascript
     var index = 0, item;
     for (index; item = array[index]; index++) { fn(item); ... }
@@ -220,13 +221,13 @@ No language is perfect, there are something you should avoid ...
     `index` and `item` here is going to pollute the function context this `for` loop is in,
 
     encapsulated functions solves this problem by introducing a lambda function to contain these variables.
-    
+
     ```javascript
     jQuery.each(theArray, function (index, value) { ... });
     ```
-    
+
     One way to build your own function to loop through both array & object if you are not using any framework.
-    
+
     ```javascript
     // "return false" to break the loop
     function each(obj, callback, scope) {
@@ -259,7 +260,7 @@ No language is perfect, there are something you should avoid ...
         }
     }
     ```
-    
+
 1. Go test it!
 
     When in doubt, try to create a test case here: [jsperf](http://jsperf.com/)

@@ -104,16 +104,15 @@ Notes:
 1. The content attribute MUST be defined if `name` or `http-equiv` attribute is defined. If none of these are defined, the content attribute CANNOT be defined.
 
 
-## Block-level elements and inline elements
-
-Never place a block-level element inside an inline element.
-
+## Elements
 
 ### Block-level elements
 
 By default, block-level elements begin on new lines.
 
 Generally, block-level elements may contain inline elements and other block-level elements. Inherent in this structural distinction is the idea that block elements create "larger" structures than inline elements.
+
+**Warning**: Never place a block-level element inside an inline element.
 
     <address>, <blockquote>, <dd>, <div>, <dl>, <fieldset>, <form>, <h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <hr>, <noscript>, <ol>, <p>, <pre>, <table>, <tfoot>, <ul>
 
@@ -130,49 +129,128 @@ Generally, inline elements may contain only data and other inline elements.
 
     <b>, <big>, <i>, <small>, <tt>, <abbr>, <acronym>, <cite>, <code>, <dfn>, <em>, <kbd>, <strong>, <samp>, <var>, <a>, <bdo>, <br>, <img>, <map>, <object>, <q>, <script>, <span>, <sub>, <sup>, <button>, <input>, <label>, <select>, <textarea>
 
+### Deprecated elements
 
-## Use proper tags
+You should **NOT** use these elements since they are no longer part of the family.
 
-### General elements
-
-
-1. The `<br>`is used to insert a line break in a sentence. Examples might be to correctly lay out an address. Use paragraph elements to split up your content and use CSS margins to alter the spacing between them.
-2. The `<div>` tag is perfectly acceptable to use to define the main page structure, but always try to use more suitable tags for your page elements. Paragraph tags, ordered/unordered lists and definition lists can be more semantic choices.
-3. CSS should always be used for presentational styling, so use the font-size CSS property to control your text sizes.
-4. The `<small>` HTML tag is reserved for defining small print or legal text.
-5. these days the CSS border property is the correct solution in most situations; however the `<hr>` tags still has its use in specific situations when defining layouts containing copy such as book chapters or poetry stanzas.
-5. The `<title>` should accurately but concisely describe the contents of the page. It’s important to include keywords that relate to the content as it is recognised by search engines, but it shouldn’t be abused.
-6. `<img>` tag alt attributes should contain an accurate description of the image. If the image is being used as a link give an insight to where the link will go. If the image has no importance an empty alt attribute is acceptable.
-7. Use the `<label>` tag to relate a field to its descriptive label. For extra usability points add the for attribute to allow the user to click the label to activate the relevant input field.
-8. The correct use of the `<address>` tag is to define the author or owner of the document. Therefore it’s usually wrapped around their name along with their contact email address or telephone number.
-9. A `<p>` signifies a paragraph. It should be used only to wrap a paragraph of text.
-10. To use the `<span>`element, simply surround the text that you want to add styles to with the `<span>2014<span>`
-11. Use `<strong>` element instead of `<b>`
+    <applet>, <acronym>, <bgsound>, <dir>, <frame>, <frameset>, <noframes>, <isindex>, <listing>, <nextid>, <noembed>, <plaintext>, <rb>, <strike>, <xmp>, <basefont>, <big>, <blink>, <center>, <font>, <marquee>, <multicol>, <nobr>, <spacer>, <tt>
 
 
-### Table
+## Proper way to use elements
 
-1. Table heads use `<th>` rows and columns use `<scope>` attribute.
-2. able have `<summary>` and/or `<caption>` elements where appropriate
+### Sections
+
+There are two semantically equivalent syntax for headings exists, the later one is introduced with the new section element.
+
+1. Pure heading elements
+
+    ```
+    <h1>Let's call it a draw(ing surface)</h1>
+    <h2>Diving in</h2>
+    <h2>Simple shapes</h2>
+    <h2>Canvas coordinates</h2>
+    <h3>Canvas coordinates diagram</h3>
+    <h2>Paths</h2>
+    ```
+
+2. Heading elements with the section element
+
+    ```
+    <h1>Let's call it a draw(ing surface)</h1>
+    <section>
+        <h1>Diving in</h1>
+    </section>
+    <section>
+        <h1>Simple shapes</h1>
+    </section>
+    <section>
+        <h1>Canvas coordinates</h1>
+        <section>
+            <h1>Canvas coordinates diagram</h1>
+        </section>
+    </section>
+    <section>
+        <h1>Paths</h1>
+    </section>
+    ```
+
+**Which one to use?**
+
+The answer depends on your site scale and the architecture of the site,
+
+if there is no dynamic contents, and the site is developing as a whole,
+the first suits you, and provides the maximum compatibility;
+
+if the site is created dynamically, combined by components, usually the outer context of the inserted components are unknown, then it's best to use `<section>`, the content editors can use `<h1>` elements throughout, without having to worry about whether a particular section is at the top level, the second level, the third level, and so on.
+
+The side affect of the second approach is some old softwares may interpret the heading numbers incorrectly, which is a minor drawback.
 
 
-### Structural elements
+### Grouping content
 
-1. `<ul>, <ol>`List markup is used whenever items are in a visual list.
-2. Quotations use `<blockquote>` and cite elements (and these are used for quotations only).
-3. Emphasis is achieved using `<em>` or `<strong>`.
-4. Abbreviations and acronyms use `<abbr>` the first time they are introduced on a page.
-5. Blocks of repeated content (e.g. primary navigation lists) can be bypassed with a skip link.
-6. `<iframes>` have descriptive title attributes describing the content being loaded with alternative content if appropriate.
-7. Use `<i>` for Italicised text
-8. Use `<fieldset>` and “legend" to ground fields together.
-9. Use `<section>` to either group different articles into different purposes or subjects, or to define the different sections of a single article.
-10. The `<aside>` element represents a section of a page that consists of content that is tangentially related to the content around the aside element, and which could be considered separate from that content. Such sections are often represented as sidebars in printed typography.
+#### The p element
+#### The ol element
+#### The ul element
+
+
+### Text-level semantics
+
+#### The br element
+
+br elements must be used only for line breaks that are actually part of the content, as in poems or addresses.
+
+The following example is correct usage of the br element:
+
+    <p>P. Sherman<br />
+    42 Wallaby Way<br />
+    Sydney</p>
+
+br elements must NOT be used for separating thematic groups in a paragraph.
+
+The following examples are non-conforming, as they abuse the br element:
+
+    <p><a ...>34 comments.</a><br />
+    <a ...>Add a comment.</a></p>
+    <p><label>Name: <input name="name"></label><br />
+    <label>Address: <input name="address"></label></p>
+
+Here are alternatives to the above, which are correct:
+
+    <p><a ...>34 comments.</a></p>
+    <p><a ...>Add a comment.</a></p>
+    <p><label>Name: <input name="name"></label></p>
+    <p><label>Address: <input name="address"></label></p>
+
+
+#### The span element
+#### The em element
+#### The strong element
+#### The small element
+#### The i element
+#### The b element
+
+
+### Embedded content
+
+#### The img element
+#### The iframe element
+#### The object element
+
+
+### Forms
+
+#### The label element
+
+
+### Tabular data
+
+#### The table element
+#### The caption element
 
 
 ## References
 
-1. [HTML Living Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html#contents)
+1. [HTML Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/)
 1. [MetaExtensions](http://wiki.whatwg.org/wiki/MetaExtensions)
 1. [Meta tags that Google understands](https://support.google.com/webmasters/answer/79812?hl=en)
 1. [META XHTML Element](http://msdn.microsoft.com/en-us/library/bb159711.aspx)
@@ -183,3 +261,10 @@ Generally, inline elements may contain only data and other inline elements.
 1. [Using the viewport meta tag to control layout on mobile browsers](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag)
 1. [Block-level elements](https://developer.mozilla.org/en-US/docs/HTML/Block-level_elements)
 1. [Inline elements](https://developer.mozilla.org/en-US/docs/HTML/Inline_elements)
+1. [Non-conforming features](http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#non-conforming-features)
+1. [Sections](http://www.whatwg.org/specs/web-apps/current-work/multipage/sections.html#sections)
+1. [Grouping content](http://www.whatwg.org/specs/web-apps/current-work/multipage/grouping-content.html#grouping-content)
+1. [Text-level semantics](http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#text-level-semantics)
+1. [Embedded content](http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content)
+1. [Tabular data](http://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#tabular-data)
+1. [Forms](http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#forms)
