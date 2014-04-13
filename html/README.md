@@ -17,7 +17,7 @@ Work in progress
     <!-- Start header content area -->
     <div class="header">
       <a href="/" class="hsbc-logo">
-        <img alt="HSBC" src="/images/hsbc-logo.png">
+        <img alt="HSBC" src="/images/hsbc-logo.png" />
       </a>
     </div>
     <!-- End header content area -->
@@ -68,20 +68,20 @@ Work in progress
 1. Optional tags for additional information
 
     ```
-    <meta name="author" content="">
-    <meta name="copyright" content="">
+    <meta name="author" content="" />
+    <meta name="copyright" content="" />
     ```
 
 1. De facto tags for mobile devices
 
     ```
     <!-- general -->
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width" />
 
     <!-- for iOS devices or Android -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
     ```
 
     Optional tags for legacy devices:
@@ -89,7 +89,7 @@ Work in progress
     ```
     <!-- Windows Mobile -->
     <meta http-equiv="cleartype" content="on" />
-    <meta name="MobileOptimized" content="480">
+    <meta name="MobileOptimized" content="480" />
 
     <!-- Blackberry -->
     <meta name="HandheldFriendly" content="true" />
