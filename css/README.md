@@ -14,32 +14,46 @@ Todo:
 
     **Development phase**
 
-        ```css
-        .success {
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-            color: #468847;
-        }
+    ```css
+    .success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #468847;
+    }
 
-        .error {
-            background-color: #ecc7c7;
-            border-color: #db0011;
-            color: #468847;
-        }
-        ```
+    .error {
+        background-color: #ecc7c7;
+        border-color: #db0011;
+        color: #468847;
+    }
+    ```
 
     **Production phase** (compressed)
 
-        ```css
-        .success{background-color:#dff0d8;border-color:#d6e9c6;color:#468847;}.error{background-color:#ecc7c7;border-color:#db0011;color:#468847;}
-        ```
+    ```css
+    .success{background-color:#dff0d8;border-color:#d6e9c6;color:#468847;}.error{background-color:#ecc7c7;border-color:#db0011;color:#468847;}
+    ```
 
     When minifing a CSS, include a commented link at the top to view the unminified CSS
+
+1. Use conditional classes rather than conditional style sheets or inline hacks
+
+    ```
+    /*not recommended*/
+    .success {
+        *zoom: 1;
+    }
+
+    /*recommended*/
+    .ie7 .success {
+        zoom: 1;
+    }
+    ```
 
 
 ## Naming convention
 
-Use lowercase and dashes for Class, ID names, also CSS properties and values, follow the naming principles of [BEM](http://bem.info/method/definitions/).
+1. Use lowercase and dashes for Class, ID names, also CSS properties and values, follow the naming principles of [BEM](http://bem.info/method/definitions/).
 
     ```css
     <!-- block -->
@@ -50,7 +64,8 @@ Use lowercase and dashes for Class, ID names, also CSS properties and values, fo
         <li class="menu-item-alternative">…</li>
     </ul>
     ```
-Try to describe the element clearly without abbreviations by "What it is" not "How it looks like", leave the definition of styles out of names.
+
+1. Try to describe the element clearly without abbreviations by "What it is" not "How it looks like", leave the definition of styles out of names.
 
     ```css
     .menu-item-alternative {...} /*recommended*/
@@ -58,7 +73,7 @@ Try to describe the element clearly without abbreviations by "What it is" not "H
     .blue-bold-heading {...} /*not recommended*/
     ```
 
-Avoid using IDs for styling. IDs are great for anchor links and JS hooks, but avoid using them as styling hooks.
+1. Avoid using IDs for styling. IDs are great for anchor links and JS hooks, but avoid using them as styling hooks.
 
     ```css
     /*not recommended*/
@@ -68,7 +83,7 @@ Avoid using IDs for styling. IDs are great for anchor links and JS hooks, but av
     }
     ```
 
-Avoid qualifying class names with type selectors. you may want to apply it in a different element
+1. Avoid qualifying class names with type selectors. you may want to apply it in a different element
 
     ```css
     .nav {...}/*recommended*/
@@ -78,7 +93,7 @@ Avoid qualifying class names with type selectors. you may want to apply it in a 
     span.important {...} /*not recommended*/
     ```
 
-Prefix status classes with is-` for more meaningful naming
+1. Prefix status classes with is-` for more meaningful naming
 
     ```css
     .is-hidden {...}/*recommended*/
@@ -121,6 +136,7 @@ Prefix status classes with is-` for more meaningful naming
         color: #468847;
     }
 
+    /*recommended*/
     .success {
         background-color: #dff0d8;
         border-color: #d6e9c6;
@@ -380,80 +396,82 @@ Prefix status classes with is-` for more meaningful naming
 
 ### Do not restate certain properties
 
-    ```css
-    li {
-        float: left;
-        display: block; /* unneccessary */
-    }
+```css
+li {
+    float: left;
+    display: block; /* unneccessary */
+}
 
-    button {
-        position: absolute;
-        display: block; /* unneccessary */
-    }
-    ```
+button {
+    position: absolute;
+    display: block; /* unneccessary */
+}
+```
 
 ### Clear floats
 
 Create a class called `clearfix` with the following styles and attached it to any parent that has a floated children
 
-    ```css
-    /*
-     * Read more about this approach
-     * http://nicolasgallagher.com/micro-clearfix-hack/
-     *
-     * For modern browsers
-     * 1. The space content is one way to avoid an Opera bug when the
-     *    contenteditable attribute is included anywhere else in the document.
-     *    Otherwise it causes space to appear at the top and bottom of elements
-     *    that are clearfixed.
-     * 2. The use of `table` rather than `block` is only necessary if using
-     *    `:before` to contain the top-margins of child elements.
-     */
-    .clearfix:before,
-    .clearfix:after {
-        content: " "; /* 1 */
-        display: table; /* 2 */
-    }
+```css
+/*
+ * Read more about this approach
+ * http://nicolasgallagher.com/micro-clearfix-hack/
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
 
-    .clearfix:after {
-        clear: both;
-    }
+.clearfix:after {
+    clear: both;
+}
 
-    /**
-     * For IE 6/7 only
-     * Include this rule to trigger hasLayout and contain floats.
-     */
-    .clearfix {
-        *zoom: 1;
-    }
-    ```
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+    *zoom: 1;
+}
+```
 
-    **HTML Usage**
-    ```html
-    <div class="module-name clearfix">
-        <div class="module-name-child-floated-left">...</div>
-        <div class="module-name-child-floated-right">...</div>
-    </div>
-    ```
+**HTML Usage**
+    
+```html
+<div class="module-name clearfix">
+    <div class="module-name-child-floated-left">...</div>
+    <div class="module-name-child-floated-right">...</div>
+</div>
+```
+
 
 ### Center elements
 
 Centering elements by giving it `auto` horizontal margins
 
-    ```css
-    .centered-element {
-        margin-left: auto;
-        margin-right: auto;
-    }
+```css
+.centered-element {
+    margin-left: auto;
+    margin-right: auto;
+}
 
-    /*or*/
-    /* 0 is just for demonstration,
-     * it indicates top and bottom margin
-     */
-    .centered-element {
-        margin: 0 auto;
-    }
-    ```
+/*or*/
+/* 0 is just for demonstration,
+ * it indicates top and bottom margin
+ */
+.centered-element {
+    margin: 0 auto;
+}
+```
 
 ### !important
 
@@ -463,9 +481,9 @@ Do not use `!important` declarations unless you really have to do so
 
 Normalize your main anchor declaration by setting all anchor statuses "normal, hover, active and focus"
 
-    ```css
-    a {...}
-    a:hover {...}
-    a:active {...}
-    a:focus {...}
-    ```
+```css
+a {...}
+a:hover {...}
+a:active {...}
+a:focus {...}
+```
