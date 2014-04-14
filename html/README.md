@@ -2,6 +2,12 @@
 
 Work in progress
 
+Todo:
+
+1. element usages
+
+1. conditional classes
+
 
 ## Style
 
@@ -17,15 +23,15 @@ Work in progress
 
 Place comments on a new line above the container block element. Use single line short sentence as comment and place comments only for module and main block elements.
 
-    ```
-    <!-- Start header content area -->
-    <div class="header">
-        <a href="/" class="hsbc-logo">
-            <img alt="HSBC" src="/images/hsbc-logo.png" />
-        </a>
-    </div>
-    <!-- End header content area -->
-    ```
+```html
+<!-- Start header content area -->
+<div class="header">
+    <a href="/" class="hsbc-logo">
+        <img alt="HSBC" src="/images/hsbc-logo.png" />
+    </a>
+</div>
+<!-- End header content area -->
+```
 
 
 ## Enforce HTML standard
