@@ -4,7 +4,16 @@ Work in progress
 
 Todo:
 
-1. add references
+1. Add references
+1. More Style rules (no Parentheses for `typeof`, space requirements)
+1. Best practice: how to check undefined variables
+1. Best practice: how to bind `this`
+1. Best practice: Use Array and Object literals instead of Array and Object constructors.
+1. Performance part: `array.join()` or string concatenation
+1. Performance part: `a.b = null;` or `delete b;`
+1. Rewrite OO part, only need private variables and prototype
+1. Unit tests: checkout DOH & qUnit
+1. Checkout MDN for js part
 
 ## Naming convention:
 
