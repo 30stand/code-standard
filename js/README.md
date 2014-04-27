@@ -295,26 +295,26 @@ Another example to use this technique to build Classes.
 
 ### Check variable types
 
-    1. `undefined`
+1. `undefined`
 
-        The safest way is to do it with the help of `typeof`
+    The safest way is to do it with the help of `typeof`
 
-        ```javascript
-        // notice only "x" is declared
-        var x;
+    ```javascript
+    // notice only "x" is declared
+    var x;
 
-        typeof x === 'undefined' // true
-        typeof y === 'undefined' // true
+    typeof x === 'undefined' // true
+    typeof y === 'undefined' // true
 
-        x === undefined // true
-        y === undefined // ReferenceError: y is not defined
-        ```
+    x === undefined // true
+    y === undefined // ReferenceError: y is not defined
+    ```
 
-    2. `NaN`
+2. `NaN`
 
-        ```javascript
-        isNaN( ... );
-        ```
+    ```javascript
+    isNaN( ... );
+    ```
 
 
 ### Bind `this`
