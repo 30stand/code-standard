@@ -15,7 +15,7 @@ Todo:
 
     4 spaces
 
-1. Close tags are more preferred
+1. Closing tags are more preferred
 
     `<br />` instead of `<br>`, for better visual consistency.
 

@@ -4,14 +4,15 @@ Work in progress
 
 Todo:
 
-1. Add references
-1. More Style rules (no Parentheses for `typeof`, space requirements)
-1. Best practice: how to check undefined variables
-1. Best practice: how to bind `this`
-1. Best practice: Use Array and Object literals instead of Array and Object constructors.
+1. ~~Add references~~
+1. ~~no Parentheses for `typeof`~~
+1. space requirements
+1. ~~Best practice: how to check undefined variables~~
+1. ~~Best practice: how to bind `this`~~
+1. ~~Best practice: Use Array and Object literals instead of Array and Object constructors.~~
 1. Performance part: `array.join()` or string concatenation
 1. Performance part: `a.b = null;` or `delete b;`
-1. Rewrite OO part, only need private variables and prototype
+1. ~~Rewrite OO part, only need private variables and prototype~~
 1. Unit tests: checkout DOH & qUnit
 1. Checkout MDN for js part
 
@@ -30,21 +31,50 @@ Todo:
 
     4 spaces
 
+1. Semicolons
+
+    Required.
+
+1. Parentheses
+
+    Use it only when it's required by the syntax and semantics, operators like `typeof`, `instanceof`, `new` does not require parentheses to work.
+
+    ```javascript
+    typeof 'undefined' === 'string';
+    ```
+
 1. Curly brackets
 
     Required after statements such as ... ```if, switch, try, catch``` ... etc.
 
     For ```{```, place it at the end of the previous line, NOT the begining of the next line, to avoid wrong semicolon insertion causes misinterpretation of the program.
 
-1. Semicolons
-
-    Required.
+    ```javascript
+    if ( ... ) {
+        // do something;
+    }
+    ```
 
 1. `var`
 
     Required, declare all variables at the top of each function.
 
-    Always remember that JavaScript does NOT have block scope, only functions have scope.
+1. Literals
+
+    Use object literals, array literals, instead of calling the constructors.
+
+    ```javascript
+    var newObj = {}; // preferred
+    var newObj = new Object(); // avoid
+
+    var newArray = []; // preferred
+    var newArray = new Array(); // avoid
+    ```
+
+1. Quotes
+
+    `'` is preferred over `"`
+
 
 ## Comments
 
@@ -88,6 +118,7 @@ No language is perfect, there are something you should avoid ...
     ' \t\r\n ' == 0 // true
     ```
 
+
 1. Reserved words
 
     A common error like this,
@@ -98,103 +129,10 @@ No language is perfect, there are something you should avoid ...
 
     "class" is a reserved word, the browsers with ECMAScript 3 standard will throw an error, but not the ones with ECMAScript 5 standard.
 
+1. `with`
 
-## Inheritance
+    Use variables to cache objects then access it, instead of using this syntax.
 
-1. Pseudoclassical
-
-    ```javascript
-    var Mammal = function (name) {
-        this.name = name;
-    };
-    Mammal.prototype.getName = function ( ) {
-        return this.name;
-    };
-    Mammal.prototype.says = function ( ) {
-        return this.saying || '';
-    };
-    var myMammal = new Mammal('Herb the Mammal');
-    var Cat = function (name) {
-        this.name = name;
-        this.saying = 'meow';
-    };
-    // Replace Cat.prototype with a new instance of Mammal
-    Cat.prototype = new Mammal( );
-    ```
-
-1. Object Specifiers
-
-    This pattern is identical to pseudoclassical,
-    except replace the auguments of constructors with a single object,
-    this pattern can take the additional advantage when working with JSON.
-
-    ```javascript
-    var Mammal = function (obj) {
-        this.name = obj.name;
-    };
-    ```
-
-1. Prototypal
-
-    Instead of the prototype chain between constructors,
-    we build upon an existing object, then customize it.
-
-    ```javascript
-    var myMammal = {
-        name : 'Herb the Mammal',
-        getName : function ( ) {
-            return this.name;
-        },
-        says : function ( ) {
-            return this.saying || '';
-        }
-    };
-    var myCat = (function () {
-        var F = function () {};
-        F.prototype = myMammal;
-        return new F();
-    }());
-    myCat.name = 'Henrietta';
-    ```
-
-1. Functional
-
-    The functional pattern has a great deal of flexibility.
-    It requires less effort than the pseudoclassical pattern,
-    and gives us better encapsulation and information hiding and access to super methods.
-
-    ```javascript
-    var mammal = function (privateObj, parentObj) {
-        // inherits with prototypal pattern
-        var newObj = (function () {
-            var F = function () {};
-            F.prototype = parentObj || {};
-            return new F();
-        }());
-        // getters to access private properties
-        newObj.getName = function ( ) {
-            return privateObj.name;
-        };
-        newObj.says = function ( ) {
-            return privateObj.saying || '';
-        };
-        return newObj;
-    };
-    var myMammal = mammal({name: 'Herb'});
-    ```
-
-1. Parts
-
-    Make objects out of parts.
-
-    ```javascript
-    var addParts = function (privateObj, obj) {
-        obj.getName = function () { return privateObj.name };
-        return obj;
-    };
-
-    addParts({ ... });
-    ```
 
 ## Performance
 
@@ -308,3 +246,96 @@ A very useful technique for feature detections, the following sample code detect
         }
 
     }());
+
+
+### Private variables
+
+We need private variables to protect variables from malicious meddling, to make variables private, we need the help with function scope and closure.
+
+    // a getter & setter example
+    function privateVar() {
+        var x;
+
+        return {
+            get: function () {
+                return x;
+            },
+            set: function (val) {
+                x = val;
+            }
+        };
+    }
+    var apiAddr = privateVar();
+    setApiAddr = apiAddr.set;
+    getApiAddr = apiAddr.get;
+
+Another example to use this technique to build Classes.
+
+    var mammal = function (privateObj, parentObj) {
+
+        // inherits with prototypal pattern
+        var newObj = (function () {
+            var F = function () {};
+            F.prototype = parentObj || {};
+            return new F();
+        }());
+
+        // getters to access private properties
+        newObj.getName = function ( ) {
+            return privateObj.name;
+        };
+        newObj.says = function ( ) {
+            return privateObj.saying || '';
+        };
+
+        return newObj;
+    };
+
+    var myMammal = mammal({name: 'Herb'});
+
+### Check variable types
+
+    1. `undefined`
+
+        The safest way is to do it with the help of `typeof`
+
+        ```javascript
+        // notice only "x" is declared
+        var x;
+
+        typeof x === 'undefined' // true
+        typeof y === 'undefined' // true
+
+        x === undefined // true
+        y === undefined // ReferenceError: y is not defined
+        ```
+
+    2. `NaN`
+
+        ```javascript
+        isNaN( ... );
+        ```
+
+
+### Bind `this`
+
+To avoid mis-reference when using `this`, it's best to cache is with another variable before referencing it, like binding events to DOM objects.
+
+    var initDOM = {
+        // ...
+        bindEvent: function () {
+            var self = this;
+            this.domNode.addEventListener('click', function () {
+                // self is referencing "initDOM"
+                self.popUp();
+            });
+        },
+        // ...
+    }
+
+
+## References
+
+1. [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742)
+1. [Professional JavaScript for Web Developers](http://www.amazon.com/Professional-JavaScript-Developers-Nicholas-Zakas/dp/1118026691)
+1. [Google JavaScript Style Guide](https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Parentheses)
