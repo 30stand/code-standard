@@ -253,3 +253,14 @@ Following is some rudimentary CSS for our example which enables the showing/hidi
 	   </fieldset>
 	</form>
 	```
+
+### Image
+1. Always include alt attribute in `<img>`.
+2. For decorative images, implement it via CSS, or implement it using `<img>` with alt="".
+3. For non-decorative images, eg charts, diagram, alt text should be descriptive.
+4. Do not embed text in image unless it is a logo.
+
+### Table
+
+1. Table heads use `<th>` rows and columns use `<scope>` attribute.
+2. able have `<summary>` and/or `<caption>` elements where appropriate
