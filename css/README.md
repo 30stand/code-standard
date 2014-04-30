@@ -487,3 +487,10 @@ a:hover {...}
 a:active {...}
 a:focus {...}
 ```
+
+
+## References
+
+1. [BEM](http://bem.info/)
+1. [SASS](http://sass-lang.com/)
+1. [CSS coding standard](https://github.com/bjankord/CSS-Coding-Standards)
