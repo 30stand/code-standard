@@ -288,6 +288,14 @@ Following is some rudimentary CSS for our example which enables the showing/hidi
 	</form>
 	```
 
+### Headings
+1. Provide heading elements at the beginning of each section of content
+2. Each page should only have one h1
+3. Headings are designed to convey logical hierarchy. Don’t skip heading levels
+4. Provide descriptive headings. Avoid duplicating heading
+5. Do not use h tags to achieve visual results only
+6. Do not use text formatting, such as font size or bold to give the visual appearance of headings
+
 ### Image
 1. Always include alt attribute in `<img>`.
 2. For decorative images, implement it via CSS, or implement it using `<img>` with alt="".
