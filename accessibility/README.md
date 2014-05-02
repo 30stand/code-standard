@@ -18,7 +18,7 @@ Lang and dir attribute
 1. Define the language of the page using the lang attribute, eg `<html lang="en">`
 2. The language of page content that is in a different language should be identified using the lang attribute, eg  `<blockquote lang="es">`, or `<span lang="fr">`
 3. Do not use the Content-Language value for an http-equiv attribute on a meta element, eg do not use `<meta http-equiv="Content-Language" content="en" />`
-4.When mixing languages with different directionality in HTML, use the dir attribute on an inline element and/or use a Unicode right-to-left mark (RLM)/left-to-right mark (LRM) to mix text direction inline
+4. When mixing languages with different directionality in HTML, use the dir attribute on an inline element and/or use a Unicode right-to-left mark (RLM)/left-to-right mark (LRM) to mix text direction inline
 
 Page title and meta description
 
