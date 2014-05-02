@@ -301,7 +301,7 @@ Following is some rudimentary CSS for our example which enables the showing/hidi
 3. Use id and headers attributes to associate data cells with multiple header cells. 
 
 Example code:
-	```
+```
 	<table>
    <tr>
      <th rowspan="2" id="h">Homework</th>
@@ -326,5 +326,5 @@ Example code:
     <td headers="p pf">15%</td>
    </tr>
   </table>
-	```
+```
 4. Avoid layout table. If layout table is used, do not include `<th>`, `<caption>` and `<summary>`.
