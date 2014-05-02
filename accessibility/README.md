@@ -26,8 +26,8 @@ Provide descriptive page title and meta description via `<title>` and `<meta nam
 
 List
 
-Use `<ol>` or `<ul>` for lists or groups of links
-Do not use `<ul>` and `<li>` when there is only one item in the list
+1. Use `<ol>` or `<ul>` for lists or groups of links
+2. Do not use `<ul>` and `<li>` when there is only one item in the list
 
 Emphasis
 
