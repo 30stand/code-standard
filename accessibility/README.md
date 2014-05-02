@@ -296,5 +296,35 @@ Following is some rudimentary CSS for our example which enables the showing/hidi
 
 ### Table
 
-1. Table heads use `<th>` rows and columns use `<scope>` attribute.
-2. able have `<summary>` and/or `<caption>` elements where appropriate
+1. Use `<th>` and scope attribute for header cells, eg '<th scope="row">' for row header and <th scope="col"> for column header. If the table header is empty, use `<td></td>`
+2. Use `<caption>` to mark up the title/heading of data table, and `<summary>` for table summary, where appropriate. If both are used, the `<caption>` should not duplicate information in the `<summary>`.
+3. Use id and headers attributes to associate data cells with multiple header cells. 
+
+Example code:
+	```
+	<table>
+   <tr>
+     <th rowspan="2" id="h">Homework</th>
+     <th colspan="3" id="e">Exams</th>
+     <th colspan="3" id="p">Projects</th>
+   </tr>
+   <tr>
+     <th id="e1" headers="e">1</th>
+     <th id="e2" headers="e">2</th>
+     <th id="ef" headers="e">Final</th>
+     <th id="p1" headers="p">1</th>
+     <th id="p2" headers="p">2</th>
+     <th id="pf" headers="p">Final</th>
+   </tr>
+   <tr>
+    <td headers="h">15%</td>
+    <td headers="e e1">15%</td>
+    <td headers="e e2">15%</td>
+    <td headers="e ef">20%</td>
+    <td headers="p p1">10%</td>
+    <td headers="p p2">10%</td>
+    <td headers="p pf">15%</td>
+   </tr>
+  </table>
+	```
+4. Avoid layout table. If layout table is used, do not include `<th>`, `<caption>` and `<summary>`.
