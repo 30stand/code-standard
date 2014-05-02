@@ -287,6 +287,39 @@ Following is some rudimentary CSS for our example which enables the showing/hidi
 	   </fieldset>
 	</form>
 	```
+1. When selection lists have groups of related options, use `<optgourp> to group `<option>` elements inside a `<select>`
+
+Example code
+
+```
+	<form action="http://example.com/prog/someprog" method="post">
+    <label for="food">What is your favorite food?</label>
+    <select id="food" name="food">
+      <optgroup label="Fruits">
+        <option value="1">Apples</option>
+        <option value="3">Bananas</option>
+        <option value="4">Peaches</option>
+        <option value="5">...</option>
+      </optgroup>
+      <optgroup label="Vegetables">
+        <option value="2">Carrots</option>
+        <option value="6">Cucumbers</option>
+       <option value="7">...</option>
+     </optgroup>
+     <optgroup label="Baked Goods">
+       <option value="8">Apple Pie</option>
+       <option value="9">Chocolate Cake</option>
+       <option value="10">...</option>
+     </optgroup>
+   </select>
+</form>     
+```
+
+1. Provide client-side validation and alert/suggestion:
+	To identify required fields that were not completed, 
+	When user provides information that is not in the list of allowed values or when user input falls outside the required format or values
+	If an input error is detected
+	
 
 ### Headings
 1. Provide heading elements at the beginning of each section of content
