@@ -13,11 +13,12 @@ Doctype
 
 Add a doctype for all the HTML pages: `<!DOCTYPE HTML>`
 
-Lang attribute
+Lang and dir attribute
 
 Define the language of the page using the lang attribute, eg `<html lang="en">`
-The language of page content that is in a different language should be identified using the lang attribute, eg  `<blockquote lang="es">`, or `<span lang="fr">'
+The language of page content that is in a different language should be identified using the lang attribute, eg  `<blockquote lang="es">`, or `<span lang="fr">`
 Do not use the Content-Language value for an http-equiv attribute on a meta element, eg do not use `<meta http-equiv="Content-Language" content="en" />`
+When mixing languages with different directionality in HTML, use the dir attribute on an inline element and/or use a Unicode right-to-left mark (RLM)/left-to-right mark (LRM) to mix text direction inline
 
 Page title and meta description
 
@@ -25,7 +26,17 @@ Provide descriptive page title and meta description via `<title>` and `<meta nam
 
 List
 
+Use `<ol>` or `<ul>` for lists or groups of links
 Do not use `<ul>` and `<li>` when there is only one item in the list
+
+Emphasis
+
+Use `<strong>` instead of `<bold>`, `<em>` tag instead of `<i>` for emphasis
+
+Blockquote
+
+Use `<blockquote>` instead of `<p class="quote">` for quotes
+
 
 Validation
 
