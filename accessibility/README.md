@@ -315,10 +315,13 @@ Example code
 </form>     
 ```
 
-5. Provide client-side validation and alert/suggestion:
-	1. To identify required fields that were not completed, 
+5. Indicate required form controls using label or legend
+
+6. Provide client-side validation and alert/suggestion/feedback:
+	1. To identify required fields that were not completed
 	2. When user provides information that is not in the list of allowed values or when user input falls outside the required format or values
 	3. If an input error is detected
+	4. When data is submitted successfully
 	
 
 ### Headings
