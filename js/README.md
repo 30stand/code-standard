@@ -7,6 +7,7 @@ Todo:
 1. ~~Add references~~
 1. ~~no Parentheses for `typeof`~~
 1. space requirements
+1. more info about `eval()`, also the correct syntax for `setTimeout` / `setInterval`
 1. ~~Best practice: how to check undefined variables~~
 1. ~~Best practice: how to bind `this`~~
 1. ~~Best practice: Use Array and Object literals instead of Array and Object constructors.~~
