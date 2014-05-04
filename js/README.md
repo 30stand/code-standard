@@ -7,7 +7,7 @@ Todo:
 1. ~~Add references~~
 1. ~~no Parentheses for `typeof`~~
 1. space requirements
-1. more info about `eval()`, also the correct syntax for `setTimeout` / `setInterval`
+1. more info about `eval()`, also the correct syntax for `setTimeout` / `setInterval` (sure add a new section about security)
 1. ~~Best practice: how to check undefined variables~~
 1. ~~Best practice: how to bind `this`~~
 1. ~~Best practice: Use Array and Object literals instead of Array and Object constructors.~~
@@ -101,7 +101,9 @@ No language is perfect, there are something you should avoid ...
 
 1. `eval()`
 
-    Improper use of eval makes your webpage an easy target for XSS attack.
+    Reasons:
+    1. Improper use of `eval()` makes your webpage an easy target for XSS attack.
+    1. Reduces code performance and readability, also it's harder to debug.
 
 1. `==`
 
