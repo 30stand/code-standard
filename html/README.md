@@ -1,142 +1,251 @@
 # HTML code standard
+
 Work in progress
 
-## Overview
-The HTML guideline decrees our approach to front-end development, HTML and HTML5 tags usage at Digital publishing delivery team in HSBC Global publishing services.
+Todo:
 
-## General HTML standard:
-1. Tag and attribute names should be lowercase, prefix your customized properties with "data-"
-    
-    ```
-    <button type="button" class="print-button" data-index="1">Print</button>
-    ```
+1. element usages
 
-1. Use HTML tags instead of XHTML / XML
+1. conditional classes
 
-    for example, `<br>` instead of `<br />`, there is no necessity to close tags since it's only a XML standard.
+
+## Style
+
+1. Indentation
+
+    4 spaces
+
+1. Closing tags are more preferred
+
+    `<br />` instead of `<br>`, for better visual consistency.
+
+## Comments
+
+Place comments on a new line above the container block element. Use single line short sentence as comment and place comments only for module and main block elements.
+
+```html
+<!-- Start header content area -->
+<div class="header">
+    <a href="/" class="hsbc-logo">
+        <img alt="HSBC" src="/images/hsbc-logo.png" />
+    </a>
+</div>
+<!-- End header content area -->
+```
+
+
+## Enforce HTML standard
 
 1. Doctype declaration, always use
-    
+
     ```
     <!DOCTYPE html>
     ```
 
-## VIEWPORT Meta tag usage
+    Unless the page is IE-only, or only works under quirks mode.
 
-General Meta tags:
+1. Tag and attribute names should be lowercase, prefix custom non-visible data with `data-*` attributes
 
-    <meta charset="utf-8" >
-    <meta http-equiv="x-ua-compatible" content="IE=edge">
-    <meta http-equiv="cleartype" content="on">
-
-For robots: Tell robots to how index the content, and/or follow links
-
-	<meta name="title" content="">
-	<meta name="description" content="">
-	<meta name="google" content="">
-	<meta name="robots" content="">
-	<meta name="google-site-verification" content="">
-
-For company:
-
-	<meta name="author" content="HSBC">
-	<meta name="copyright" content="Copyright 2014. All Rights Reserved.">
-
-For the responsive website or to support Mobile browser: 
-
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="format-detection" content="telephone=no">
-  
-
-Note: `<meta>` tags always goes inside the `<head>` element.  
-Note: Metadata is always passed as name/value pairs.  
-Note: The content attribute MUST be defined if the name or the http-equiv attribute is defined. If none of these are defined, the content attribute CANNOT be defined.
+    ```
+    <button type="button" class="print-button" data-index="1">Print</button>
+    ```
 
 
-## Block and inline element placing
+## Meta tags
 
-### Block elements
+1. General Meta tags
 
-Block level elements normally start (and end) with a new line when displayed in a browser.
+    ```
+    <!-- always put charset as the first line in head -->
+    <meta charset="utf-8" />
+    <!-- tell IE to work on latest rendering mode -->
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    ```
 
-	<h1>One</h1>, <P>Paragraph</p>, <ul>unordered list</ul>, 
-	<table>Table</table>, <header>Header</header>,
-	<nav>Navigation</nav>
+1. Search engines
 
-`<div>` is also block element that used as container.
+    ```
+    <title></title>
+    <meta name="robots" content="" />
+    <meta name="description" content="" />
+    <meta name="google-site-verification" content="" />
+    ```
 
-#### Sample code block:
+1. Optional tags for additional information
 
-	<div class="container">
-	  <header class="header"></header>
-	  <section class="body-copy"></section>
-	  <footer class="footer"></footer>
-	</div>
+    ```
+    <meta name="author" content="" />
+    <meta name="copyright" content="" />
+    ```
+
+1. De facto tags for mobile devices
+
+    ```
+    <!-- general -->
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- for iOS devices or Android -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    ```
+
+    Optional tags for legacy devices:
+
+    ```
+    <!-- Windows Mobile -->
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="MobileOptimized" content="480" />
+
+    <!-- Blackberry -->
+    <meta name="HandheldFriendly" content="true" />
+    ```
+
+Notes:
+
+1. `<meta>` tags always goes inside the `<head>` element.
+
+1. Meta data is always passed as name value pairs.
+
+1. The content attribute MUST be defined if `name` or `http-equiv` attribute is defined. If none of these are defined, the content attribute CANNOT be defined.
+
+
+## Elements
+
+### Block-level elements
+
+By default, block-level elements begin on new lines.
+
+Generally, block-level elements may contain inline elements and other block-level elements. Inherent in this structural distinction is the idea that block elements create "larger" structures than inline elements.
+
+**Warning**: Never place a block-level element inside an inline element.
+
+    <address>, <blockquote>, <dd>, <div>, <dl>, <fieldset>, <form>, <h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <hr>, <noscript>, <ol>, <p>, <pre>, <table>, <tfoot>, <ul>
+
+New block-level elements introduced in HTML5:
+
+    <article>, <aside>, <audio>, <canvas>, <figcaption>, <figure>, <footer>, <header>, <hgroup>, <output>, <section>, <video>
 
 
 ### Inline elements
 
-Inline elements are normally displayed without starting a new line. 
+By default, inline elements do not begin with new line.
 
-	<b>, <td>, <a>, <img>, <em>, <i>, <cite>, <mark>, <code>
+Generally, inline elements may contain only data and other inline elements.
 
-`<span>` tags also inline tags that used as text container 
+    <b>, <big>, <i>, <small>, <tt>, <abbr>, <acronym>, <cite>, <code>, <dfn>, <em>, <kbd>, <strong>, <samp>, <var>, <a>, <bdo>, <br>, <img>, <map>, <object>, <q>, <script>, <span>, <sub>, <sup>, <button>, <input>, <label>, <select>, <textarea>
 
-#### Sample code block:
+### Deprecated elements
 
-	<section class="body-copy"> 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        <a class="internal-link" href="#">sed do eiusmod</a>,
-        sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</section>
+You should **NOT** use these elements since they are no longer part of the family.
+
+    <applet>, <acronym>, <bgsound>, <dir>, <frame>, <frameset>, <noframes>, <isindex>, <listing>, <nextid>, <noembed>, <plaintext>, <rb>, <strike>, <xmp>, <basefont>, <big>, <blink>, <center>, <font>, <marquee>, <multicol>, <nobr>, <spacer>, <tt>
 
 
-## Proper indentation
+## Proper way to use elements
 
-For the indentation use 4 spaces
+### Sections
 
-## Code commenting
+There are two semantically equivalent syntax for headings exists, the later one is introduced with the new section element.
 
-Place comments on a new line above the container block element. Use single line short sentence as comment and place comments only for module and main block elements.
+1. Pure heading elements
 
-    <!-- Start header content area -->
-    <header class="header">
-      <a href="#" class="hsbc-logo" title="HSBC">
-        <img alt="HSBC" src="../images /HSBC-logo.png">
-      </a>
-      <nav class="utility-nav"><nav>
-      <nav class="main-nav"></nav>
-    </header>
-    <!-- End header content area -->
+    ```
+    <h1>Let's call it a draw(ing surface)</h1>
+    <h2>Diving in</h2>
+    <h2>Simple shapes</h2>
+    <h2>Canvas coordinates</h2>
+    <h3>Canvas coordinates diagram</h3>
+    <h2>Paths</h2>
+    ```
+
+2. Heading elements with the section element
+
+    ```
+    <h1>Let's call it a draw(ing surface)</h1>
+    <section>
+        <h1>Diving in</h1>
+    </section>
+    <section>
+        <h1>Simple shapes</h1>
+    </section>
+    <section>
+        <h1>Canvas coordinates</h1>
+        <section>
+            <h1>Canvas coordinates diagram</h1>
+        </section>
+    </section>
+    <section>
+        <h1>Paths</h1>
+    </section>
+    ```
+
+**Which one to use?**
+
+The answer depends on your site scale and the architecture of the site,
+
+if there is no dynamic contents, and the site is developing as a whole,
+the first suits you, and provides the maximum compatibility;
+
+if the site is created dynamically, combined by components, usually the outer context of the inserted components are unknown, then it's best to use `<section>`, the content editors can use `<h1>` elements throughout, without having to worry about whether a particular section is at the top level, the second level, the third level, and so on.
+
+The side affect of the second approach is some old softwares may interpret the heading numbers incorrectly, which is a minor drawback.
 
 
-## Use proper tags
+### Grouping content
 
-### General elements
-
-
-1. The `<br>`is used to insert a line break in a sentence. Examples might be to correctly lay out an address. Use paragraph elements to split up your content and use CSS margins to alter the spacing between them.
-2. The `<div>` tag is perfectly acceptable to use to define the main page structure, but always try to use more suitable tags for your page elements. Paragraph tags, ordered/unordered lists and definition lists can be more semantic choices.
-3. CSS should always be used for presentational styling, so use the font-size CSS property to control your text sizes.
-4. The `<small>` HTML tag is reserved for defining small print or legal text.
-5. these days the CSS border property is the correct solution in most situations; however the `<hr>` tags still has its use in specific situations when defining layouts containing copy such as book chapters or poetry stanzas.
-5. The `<title>` should accurately but concisely describe the contents of the page. It’s important to include keywords that relate to the content as it is recognised by search engines, but it shouldn’t be abused.
-6. `<img>` tag alt attributes should contain an accurate description of the image. If the image is being used as a link give an insight to where the link will go. If the image has no importance an empty alt attribute is acceptable.
-7. Use the `<label>` tag to relate a field to its descriptive label. For extra usability points add the for attribute to allow the user to click the label to activate the relevant input field.
-8. The correct use of the `<address>` tag is to define the author or owner of the document. Therefore it’s usually wrapped around their name along with their contact email address or telephone number.
-9. A `<p>` signifies a paragraph. It should be used only to wrap a paragraph of text.
-10. To use the `<span>`element, simply surround the text that you want to add styles to with the `<span>2014<span>`
-11. Use `<strong>` element instead of `<b>`
+#### The p element
+#### The ol element
+#### The ul element
 
 
-### Table
+### Text-level semantics
 
-1. Table heads use `<th>` rows and columns use `<scope>` attribute.
-2. able have `<summary>` and/or `<caption>` elements where appropriate
+#### The br element
+
+br elements must be used only for line breaks that are actually part of the content, as in poems or addresses.
+
+The following example is correct usage of the br element:
+
+    <p>P. Sherman<br />
+    42 Wallaby Way<br />
+    Sydney</p>
+
+br elements must NOT be used for separating thematic groups in a paragraph.
+
+The following examples are non-conforming, as they abuse the br element:
+
+    <p><a ...>34 comments.</a><br />
+    <a ...>Add a comment.</a></p>
+    <p><label>Name: <input name="name"></label><br />
+    <label>Address: <input name="address"></label></p>
+
+Here are alternatives to the above, which are correct:
+
+    <p><a ...>34 comments.</a></p>
+    <p><a ...>Add a comment.</a></p>
+    <p><label>Name: <input name="name"></label></p>
+    <p><label>Address: <input name="address"></label></p>
+
+
+#### The span element
+#### The em element
+#### The strong element
+#### The small element
+#### The i element
+#### The b element
+
+
+### Embedded content
+
+#### The img element
+#### The iframe element
+#### The object element
+
+
+### Forms
+
+#### The label element
 
 ### Image
 1. Always include alt attribute in `<img>`.
@@ -183,18 +292,29 @@ Place comments on a new line above the container block element. Use single line 
 	</form>
 	```
 
-### Structural elements
+### Tabular data
 
-1. `<ul>, <ol>`List markup is used whenever items are in a visual list.
-2. Quotations use `<blockquote>` and cite elements (and these are used for quotations only).
-3. Emphasis is achieved using `<em>` or `<strong>`.
-4. Abbreviations and acronyms use `<abbr>` the first time they are introduced on a page.
-5. Blocks of repeated content (e.g. primary navigation lists) can be bypassed with a skip link.
-6. `<iframes>` have descriptive title attributes describing the content being loaded with alternative content if appropriate.
-7. Use `<i>` for Italicised text
-8. Use `<fieldset>` and “legend" to ground fields together.
-9. Use `<section>` to either group different articles into different purposes or subjects, or to define the different sections of a single article.
-10. The `<aside>` element represents a section of a page that consists of content that is tangentially related to the content around the aside element, and which could be considered separate from that content. Such sections are often represented as sidebars in printed typography.
+#### The table element
+#### The caption element
 
 
+## References
 
+1. [HTML Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/)
+1. [MetaExtensions](http://wiki.whatwg.org/wiki/MetaExtensions)
+1. [Meta tags that Google understands](https://support.google.com/webmasters/answer/79812?hl=en)
+1. [META XHTML Element](http://msdn.microsoft.com/en-us/library/bb159711.aspx)
+1. [Specifying legacy document modes](http://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx)
+1. [Layout Meta Tag](http://msdn.microsoft.com/en-us/library/bb431690.aspx)
+1. [HTML element: <meta>](http://docs.blackberry.com/en/developers/deliverables/6176/HTML_ref_meta_564143_11.jsp)
+1. [Supported Meta Tags](https://developer.apple.com/library/safari/documentation/appleapplications/reference/SafariHTMLRef/Articles/MetaTags.html)
+1. [Using the viewport meta tag to control layout on mobile browsers](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag)
+1. [Block-level elements](https://developer.mozilla.org/en-US/docs/HTML/Block-level_elements)
+1. [Inline elements](https://developer.mozilla.org/en-US/docs/HTML/Inline_elements)
+1. [Non-conforming features](http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#non-conforming-features)
+1. [Sections](http://www.whatwg.org/specs/web-apps/current-work/multipage/sections.html#sections)
+1. [Grouping content](http://www.whatwg.org/specs/web-apps/current-work/multipage/grouping-content.html#grouping-content)
+1. [Text-level semantics](http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#text-level-semantics)
+1. [Embedded content](http://www.whatwg.org/specs/web-apps/current-work/multipage/edits.html#embedded-content)
+1. [Tabular data](http://www.whatwg.org/specs/web-apps/current-work/multipage/tabular-data.html#tabular-data)
+1. [Forms](http://www.whatwg.org/specs/web-apps/current-work/multipage/forms.html#forms)
